@@ -11,9 +11,16 @@ public class AccidentMem {
     private static final HashMap<Integer, Accident> ACCIDENT_HASH_MAP = new HashMap<>();
 
     public void of(Accident accident) {
-        int count = AccidentMem.getAccidentHashMap().size() + 1;
-        accident.setId(count);
-        ACCIDENT_HASH_MAP.put(count, accident);
+        if (!ACCIDENT_HASH_MAP.containsKey(accident.getId())) {
+            int count = AccidentMem.getAccidentHashMap().size() + 1;
+            accident.setId(count);
+            ACCIDENT_HASH_MAP.put(count, accident);
+        } else {
+            Accident a = ACCIDENT_HASH_MAP.get(accident.getId());
+            a.setName(accident.getName());
+            a.setAddress(accident.getAddress());
+            a.setText(accident.getText());
+        }
     }
 
     public static HashMap<Integer, Accident> getAccidentHashMap() {
