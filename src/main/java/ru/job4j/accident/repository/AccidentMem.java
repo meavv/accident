@@ -12,8 +12,7 @@ public class AccidentMem {
 
     public void of(Accident accident) {
         if (!ACCIDENT_HASH_MAP.containsKey(accident.getId())) {
-            int count = AccidentMem.getAccidentHashMap().size() + 1;
-            accident.setId(count);
+            int count = accident.getId();
             ACCIDENT_HASH_MAP.put(count, accident);
         } else {
             Accident a = ACCIDENT_HASH_MAP.get(accident.getId());
