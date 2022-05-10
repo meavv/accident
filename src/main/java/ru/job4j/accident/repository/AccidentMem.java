@@ -8,8 +8,15 @@ import java.util.HashMap;
 @Repository
 public class AccidentMem {
 
-    private HashMap<Integer, Accident> accidents;
+    private static final HashMap<Integer, Accident> ACCIDENT_HASH_MAP = new HashMap<>();
 
+    public void of(Accident accident) {
+        int count = AccidentMem.getAccidentHashMap().size() + 1;
+        accident.setId(count);
+        ACCIDENT_HASH_MAP.put(count, accident);
+    }
 
-
+    public static HashMap<Integer, Accident> getAccidentHashMap() {
+        return ACCIDENT_HASH_MAP;
+    }
 }

@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
+    <a href="<c:url value='/create'/>">Добавить инцидент</a>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
@@ -32,10 +33,10 @@
     <tbody>
     <c:forEach items="${list}" var="l">
         <tr>
-            <td>${l.id}</td>
-            <td>${l.name}</td>
-            <td>${l.text}</td>
-            <td>${l.address}</td>
+            <td>${l.key}</td>
+            <td>${l.value.name}</td>
+            <td>${l.value.text}</td>
+            <td>${l.value.address}</td>
         </tr>
     </c:forEach>
     </tbody>
