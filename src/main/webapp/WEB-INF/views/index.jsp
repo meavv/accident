@@ -24,15 +24,19 @@
     <thead>
     <tr>
         <th scope="col">#</th>
-        <th scope="col">String</th>
+        <th scope="col">name</th>
+        <th scope="col">text</th>
+        <th scope="col">address</th>
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${list}" var="l" >
+    <c:forEach items="${list}" var="l">
         <tr>
-            <td>${count = count + 1}</td>
-            <td>${l}</td>
-        </tr>>
+            <td>${l.id}</td>
+            <td>${l.name}</td>
+            <td>${l.text}</td>
+            <td>${l.address}</td>
+        </tr>
     </c:forEach>
     </tbody>
 
