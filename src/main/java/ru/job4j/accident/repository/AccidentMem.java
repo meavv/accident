@@ -3,26 +3,34 @@ package ru.job4j.accident.repository;
 import org.springframework.stereotype.Repository;
 import ru.job4j.accident.model.Accident;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class AccidentMem {
 
-    private static final HashMap<Integer, Accident> ACCIDENT_HASH_MAP = new HashMap<>();
+    private final HashMap<Integer, Accident> accidentHashMap = new HashMap<>();
+    private final AtomicInteger count = new AtomicInteger(1);
 
-    public void of(Accident accident) {
-        if (!ACCIDENT_HASH_MAP.containsKey(accident.getId())) {
-            int count = accident.getId();
-            ACCIDENT_HASH_MAP.put(count, accident);
-        } else {
-            Accident a = ACCIDENT_HASH_MAP.get(accident.getId());
-            a.setName(accident.getName());
-            a.setAddress(accident.getAddress());
-            a.setText(accident.getText());
-        }
+    public int getCount() {
+        return count.get();
     }
 
-    public static HashMap<Integer, Accident> getAccidentHashMap() {
-        return ACCIDENT_HASH_MAP;
+    public Accident findById(int id) {
+        return accidentHashMap.get(id);
+    }
+
+    public void add(int id, Accident accident) {
+        accidentHashMap.put(id, accident);
+        count.addAndGet(1);
+    }
+
+    public boolean containsKey(int id) {
+        return accidentHashMap.containsKey(id);
+    }
+
+    public Collection<Accident> getAccidentHashMap() {
+        return accidentHashMap.values();
     }
 }

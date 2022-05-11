@@ -34,10 +34,10 @@
     <tbody>
     <c:forEach items="${list}" var="l">
         <tr>
-            <td>${l.key}</td>
-            <td>${l.value.name}</td>
-            <td>${l.value.text}</td>
-            <td>${l.value.address}</td>
+            <td>${l.id}</td>
+            <td>${l.name}</td>
+            <td>${l.text}</td>
+            <td>${l.address}</td>
         </tr>
     </c:forEach>
     </tbody>

@@ -1,11 +1,8 @@
 package ru.job4j.accident.model;
 
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Accident {
-
-    private static final AtomicInteger COUNT = new AtomicInteger(0);
 
     private int id;
     private String name;
@@ -13,7 +10,6 @@ public class Accident {
     private String address;
 
     public Accident() {
-        this.id = COUNT.addAndGet(1);
     }
 
     public int getId() {

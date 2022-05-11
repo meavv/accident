@@ -6,14 +6,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.repository.AccidentMem;
+import ru.job4j.accident.service.AccidentService;
 
 @Controller
 public class AccidentControl {
-    private final AccidentMem accidents;
 
-    public AccidentControl(AccidentMem accidents) {
-        this.accidents = accidents;
-    }
+    private final  AccidentService accidentService = new AccidentService();
 
     @GetMapping("/create")
     public String create() {
@@ -27,14 +25,13 @@ public class AccidentControl {
 
     @PostMapping("/save")
     public String save(@ModelAttribute Accident accident) {
-        System.out.println(accident);
-        accidents.of(accident);
+        accidentService.of(accident);
         return "redirect:/";
     }
 
     @PostMapping("/edit")
     public String edit(@ModelAttribute Accident accident) {
-        accidents.of(accident);
+        accidentService.of(accident);
         return "redirect:/";
     }
 }
