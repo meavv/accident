@@ -11,23 +11,30 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class AccidentMem {
 
     private final HashMap<Integer, Accident> accidentHashMap = new HashMap<>();
-    private final AtomicInteger count = new AtomicInteger(1);
+    private final AtomicInteger count = new AtomicInteger(0);
 
-    public int getCount() {
-        return count.get();
+    public AccidentMem() {
+        for (int i = 1; i < 5; i++) {
+            Accident accident = new Accident();
+            accident.setText("text" + i);
+            accident.setAddress("address" + i);
+            accident.setName("name" + i);
+            System.out.println(accident);
+            add(accident);
+        }
     }
 
-    public Accident findById(int id) {
-        return accidentHashMap.get(id);
-    }
-
-    public void add(int id, Accident accident) {
-        accidentHashMap.put(id, accident);
-        count.addAndGet(1);
-    }
-
-    public boolean containsKey(int id) {
-        return accidentHashMap.containsKey(id);
+    public void add(Accident accident) {
+        if (accident.getId() == 0) {
+            int id = count.addAndGet(1);
+            accident.setId(id);
+            accidentHashMap.put(id, accident);
+        } else {
+            var a = accidentHashMap.get(accident.getId());
+            a.setName(accident.getName());
+            a.setAddress(accident.getAddress());
+            a.setText(accident.getText());
+        }
     }
 
     public Collection<Accident> getAccidentHashMap() {

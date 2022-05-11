@@ -10,24 +10,18 @@ import java.util.List;
 @Service
 public class AccidentService {
 
-    private static final AccidentMem ACCIDENT_MEM = new AccidentMem();
+    private AccidentMem accidentMem;
+
+    public AccidentService(AccidentMem accidentMem) {
+        this.accidentMem = accidentMem;
+    }
 
     public void of(Accident accident) {
-
-        if (!ACCIDENT_MEM.containsKey(accident.getId())) {
-            accident.setId(ACCIDENT_MEM.getCount());
-            ACCIDENT_MEM.add(accident.getId(), accident);
-        } else {
-            Accident a = ACCIDENT_MEM.findById(accident.getId());
-            a.setName(accident.getName());
-            a.setAddress(accident.getAddress());
-            a.setText(accident.getText());
-            ACCIDENT_MEM.add(accident.getId(), a);
-        }
+        accidentMem.add(accident);
     }
 
     public List<Accident> getAccidentList() {
-        return new ArrayList<>(ACCIDENT_MEM.getAccidentHashMap());
+        return new ArrayList<>(accidentMem.getAccidentHashMap());
     }
 
 }

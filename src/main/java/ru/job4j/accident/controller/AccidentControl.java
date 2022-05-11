@@ -11,7 +11,11 @@ import ru.job4j.accident.service.AccidentService;
 @Controller
 public class AccidentControl {
 
-    private final  AccidentService accidentService = new AccidentService();
+    private final  AccidentService accidentService;
+
+    public AccidentControl(AccidentService accidentService) {
+        this.accidentService = accidentService;
+    }
 
     @GetMapping("/create")
     public String create() {
