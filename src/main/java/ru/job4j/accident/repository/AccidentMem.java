@@ -30,10 +30,7 @@ public class AccidentMem {
             accident.setId(id);
             accidentHashMap.put(id, accident);
         } else {
-            var a = accidentHashMap.get(accident.getId());
-            a.setName(accident.getName());
-            a.setAddress(accident.getAddress());
-            a.setText(accident.getText());
+            accidentHashMap.replace(accident.getId(), accident);
         }
     }
 
