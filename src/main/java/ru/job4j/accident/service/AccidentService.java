@@ -3,6 +3,7 @@ package ru.job4j.accident.service;
 import org.springframework.stereotype.Service;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
+import ru.job4j.accident.model.Rule;
 import ru.job4j.accident.repository.AccidentMem;
 
 import java.util.ArrayList;
@@ -18,8 +19,8 @@ public class AccidentService {
         this.accidentMem = accidentMem;
     }
 
-    public void of(Accident accident) {
-        accidentMem.add(accident);
+    public void of(Accident accident, String[] ids) {
+        accidentMem.add(accident, ids);
     }
 
     public HashMap<Integer, AccidentType> getTypes() {
@@ -33,6 +34,10 @@ public class AccidentService {
 
     public Accident findById(int id) {
         return accidentMem.findById(id);
+    }
+
+    public HashMap<Integer, Rule>  rules() {
+        return accidentMem.getRules();
     }
 
 }

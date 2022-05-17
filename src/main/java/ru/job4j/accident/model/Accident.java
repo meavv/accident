@@ -1,6 +1,7 @@
 package ru.job4j.accident.model;
 
 import java.util.Objects;
+import java.util.Set;
 
 public class Accident {
 
@@ -10,6 +11,7 @@ public class Accident {
     private String address;
 
     private AccidentType type;
+    private Set<Rule> rules;
 
 
     public Accident() {
@@ -34,6 +36,14 @@ public class Accident {
 
     public String getName() {
         return name;
+    }
+
+    public Set<Rule> getRules() {
+        return rules;
+    }
+
+    public void setRules(Set<Rule> rules) {
+        this.rules = rules;
     }
 
     public void setName(String name) {
@@ -78,9 +88,13 @@ public class Accident {
 
     @Override
     public String toString() {
-        return "Accident{" + "id=" + id + ", name='" + name
-                + '\'' + ", text='" + text + '\''
-                + ", address='" + address + '\''
-                + ", type=" + type + '}';
+        return "Accident{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", text='" + text + '\'' +
+                ", address='" + address + '\'' +
+                ", type=" + type +
+                ", rules=" + rules +
+                '}';
     }
 }
