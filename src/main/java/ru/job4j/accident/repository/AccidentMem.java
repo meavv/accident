@@ -33,22 +33,13 @@ public class AccidentMem {
         }
     }
 
-    public void edit(Accident accident) {
-        accident.setType(types.get(accident.getType().getId()));
-        accidentHashMap.replace(accident.getId(), accident);
-    }
-
     public void add(Accident accident) {
+        accident.setType(types.get(accident.getType().getId()));
         if (accident.getId() == 0) {
-            accident.setType(types.get(accident.getType().getId()));
             int id = count.addAndGet(1);
             accident.setId(id);
             accidentHashMap.put(id, accident);
         } else {
-            Accident oldAccident = accidentHashMap.get(accident.getId());
-            accident.setText(oldAccident.getText());
-            accident.setAddress(oldAccident.getAddress());
-            accident.setType(oldAccident.getType());
             accidentHashMap.replace(accident.getId(), accident);
         }
     }

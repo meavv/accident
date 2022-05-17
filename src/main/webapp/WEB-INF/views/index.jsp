@@ -3,7 +3,6 @@
 <html>
 <head>
     <a href="<c:url value='/create'/>">Добавить инцидент</a>
-    <a href="<c:url value='/edit'/>">Изменить инцидент</a>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
@@ -41,7 +40,7 @@
             <td>${l.address}</td>
             <td>${l.type.name}</td>
             <td>
-            <a href="<c:url value='/update?id=${l.id}'/>">Изменить Имя инцидента</a>
+            <a href="<c:url value='/update?id=${l.id}'/>">Изменить инцидент</a>
             </td>
         </tr>
     </c:forEach>

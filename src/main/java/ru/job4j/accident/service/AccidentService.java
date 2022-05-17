@@ -35,7 +35,4 @@ public class AccidentService {
         return accidentMem.findById(id);
     }
 
-    public void edit(Accident accident) {
-        accidentMem.edit(accident);
-    }
 }

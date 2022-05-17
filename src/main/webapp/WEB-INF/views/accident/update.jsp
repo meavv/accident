@@ -12,6 +12,22 @@
             <td><input type='text' name='name' value="${accident.name}"></td>
         </tr>
         <tr>
+            <td>Текст:</td>
+            <td><input type='text' name='text' value="${accident.text}"></td>
+        </tr>
+        <tr>
+            <td>Адрес:</td>
+            <td><input type='text' name='address' value="${accident.address}"></td>
+        </tr>
+        <tr>
+            <td>Тип:</td>
+            <td>
+                <select name="type.id">
+                    <c:forEach var="type" items="${types}" >
+                        <option value="${type.value.id}">${type.value.name}</option>
+                    </c:forEach>
+                </select>
+        </tr>
         <tr>
             <td colspan='2'><input name="submit" type="submit" value="Сохранить" /></td>
         </tr>
