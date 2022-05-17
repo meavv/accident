@@ -20,8 +20,12 @@ public class AccidentService {
         accidentMem.add(accident);
     }
 
+
     public List<Accident> getAccidentList() {
         return new ArrayList<>(accidentMem.getAccidentHashMap());
     }
 
+    public Accident findById(int id) {
+        return accidentMem.findById(id);
+    }
 }

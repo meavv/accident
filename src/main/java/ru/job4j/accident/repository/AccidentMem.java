@@ -34,6 +34,10 @@ public class AccidentMem {
         }
     }
 
+    public Accident findById(int id) {
+        return accidentHashMap.get(id);
+    }
+
     public Collection<Accident> getAccidentHashMap() {
         return accidentHashMap.values();
     }

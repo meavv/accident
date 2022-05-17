@@ -38,6 +38,9 @@
             <td>${l.name}</td>
             <td>${l.text}</td>
             <td>${l.address}</td>
+            <td>
+            <a href="<c:url value='/update?id=${l.id}'/>">Изменить инцидент</a>
+            </td>
         </tr>
     </c:forEach>
     </tbody>
