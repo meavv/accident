@@ -9,7 +9,19 @@ public class Accident {
     private String text;
     private String address;
 
+    private AccidentType type;
+
+
     public Accident() {
+    }
+
+
+    public AccidentType getType() {
+        return type;
+    }
+
+    public void setType(AccidentType type) {
+        this.type = type;
     }
 
     public int getId() {
@@ -63,11 +75,12 @@ public class Accident {
         return Objects.hash(id, name, text, address);
     }
 
+
     @Override
     public String toString() {
-        return "Accident{" + "id=" + id
-                + ", name='" + name + '\''
-                + ", text='" + text + '\''
-                + ", address='" + address + '\'' + '}';
+        return "Accident{" + "id=" + id + ", name='" + name
+                + '\'' + ", text='" + text + '\''
+                + ", address='" + address + '\''
+                + ", type=" + type + '}';
     }
 }

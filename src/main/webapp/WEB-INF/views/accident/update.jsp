@@ -10,8 +10,6 @@
         <tr>
             <td>Название:</td>
             <td><input type='text' name='name' value="${accident.name}"></td>
-            <td><input type='hidden' name='text' value="${accident.text}"></td>
-            <td><input type='hidden' name='address' value="${accident.address}"></td>
         </tr>
         <tr>
         <tr>

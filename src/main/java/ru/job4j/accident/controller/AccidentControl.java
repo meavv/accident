@@ -7,8 +7,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.job4j.accident.model.Accident;
+import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.repository.AccidentMem;
 import ru.job4j.accident.service.AccidentService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class AccidentControl {
@@ -20,25 +24,26 @@ public class AccidentControl {
     }
 
     @GetMapping("/create")
-    public String create() {
+    public String create(Model model) {
+        model.addAttribute("types", accidentService.getTypes());
         return "accident/create";
     }
 
     @GetMapping("/edit")
-    public String edit() {
+    public String edit(Model model) {
+        model.addAttribute("types", accidentService.getTypes());
         return "accident/edit";
     }
 
     @PostMapping("/save")
     public String save(@ModelAttribute Accident accident) {
-        System.out.println("ac " + accident);
         accidentService.of(accident);
         return "redirect:/";
     }
 
     @PostMapping("/edit")
     public String edit(@ModelAttribute Accident accident) {
-        accidentService.of(accident);
+        accidentService.edit(accident);
         return "redirect:/";
     }
 
