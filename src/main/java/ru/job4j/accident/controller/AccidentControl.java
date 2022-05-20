@@ -32,8 +32,6 @@ public class AccidentControl {
         return "accident/create";
     }
 
-
-
     @PostMapping("/save")
     public String save(@ModelAttribute Accident accident, HttpServletRequest req) {
         String[] ids = req.getParameterValues("rIds");
