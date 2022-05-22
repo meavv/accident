@@ -5,9 +5,6 @@
 <form action="<c:url value='/save?id=${accident.id}'/>" method='POST'>
     <table>
         <tr>
-            ${accident}
-        </tr>
-        <tr>
             <td>Название:</td>
             <td><input type='text' name='name' value="${accident.name}"></td>
         </tr>

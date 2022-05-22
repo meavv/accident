@@ -33,7 +33,7 @@ public class Main {
 
 
 
-        var all = accidentJdbcTemplate.findById(33);
+        var all = accidentJdbcTemplate.getRuleById(1);
         System.out.println(all);
 
     }
