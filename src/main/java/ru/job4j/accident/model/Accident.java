@@ -1,16 +1,25 @@
 package ru.job4j.accident.model;
 
+
+import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
 
+@Entity
+@Table(name = "accident")
 public class Accident {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String text;
     private String address;
 
+    @OneToOne
     private AccidentType type;
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<Rule> rules;
 
 
@@ -88,13 +97,10 @@ public class Accident {
 
     @Override
     public String toString() {
-        return "Accident{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", text='" + text + '\'' +
-                ", address='" + address + '\'' +
-                ", type=" + type +
-                ", rules=" + rules +
-                '}';
+        return "Accident{" + "id=" + id + ", name='" + name + '\''
+                + ", text='" + text + '\'' + ", address='"
+                + address + '\'' + ", type=" + type + ", rules="
+                + rules + '}';
     }
 }
+

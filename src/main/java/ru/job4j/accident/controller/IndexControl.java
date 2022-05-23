@@ -14,7 +14,6 @@ public class IndexControl {
 
     private final AccidentService accidents;
 
-
     public IndexControl(AccidentService accidents) {
         this.accidents = accidents;
     }

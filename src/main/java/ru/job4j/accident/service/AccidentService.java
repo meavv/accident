@@ -4,9 +4,9 @@ import org.springframework.stereotype.Service;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
-import ru.job4j.accident.repository.AccidentJdbcTemplate;
-import ru.job4j.accident.repository.AccidentMem;
+import ru.job4j.accident.repository.AccidentHibernate;
 
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,31 +14,32 @@ import java.util.List;
 @Service
 public class AccidentService {
 
-    private AccidentJdbcTemplate accidentMem;
+    private AccidentHibernate accidentHibernate;
 
-    public AccidentService(AccidentJdbcTemplate accidentMem) {
-        this.accidentMem = accidentMem;
+    public AccidentService(AccidentHibernate accidentMem) {
+        this.accidentHibernate = accidentMem;
     }
 
     public void of(Accident accident, String[] ids) {
-        accidentMem.add(accident, ids);
+        accidentHibernate.save(accident, ids);
+    }
+
+    public List<Accident> getAccidentList() {
+        var s = accidentHibernate.getAll();
+
+        return new ArrayList<>(s);
     }
 
     public HashMap<Integer, AccidentType> getTypes() {
-        return accidentMem.getTypes();
+        return accidentHibernate.getTypes();
     }
 
-
-    public List<Accident> getAccidentList() {
-        return new ArrayList<>(accidentMem.getAll());
-    }
-
-    public Accident findById(int id) {
-        return accidentMem.findById(id);
+     public Accident findById(int id) {
+        return accidentHibernate.findById(id);
     }
 
     public HashMap<Integer, Rule>  rules() {
-        return accidentMem.getRules();
+        return accidentHibernate.getRules();
     }
 
 }
