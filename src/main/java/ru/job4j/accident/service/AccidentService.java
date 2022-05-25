@@ -26,7 +26,6 @@ public class AccidentService {
 
     public List<Accident> getAccidentList() {
         var s = accidentHibernate.getAll();
-
         return new ArrayList<>(s);
     }
 
@@ -34,11 +33,11 @@ public class AccidentService {
         return accidentHibernate.getTypes();
     }
 
-     public Accident findById(int id) {
+    public Accident findById(int id) {
         return accidentHibernate.findById(id);
     }
 
-    public HashMap<Integer, Rule>  rules() {
+    public HashMap<Integer, Rule> rules() {
         return accidentHibernate.getRules();
     }
 

@@ -40,6 +40,7 @@
             <td>${l.text}</td>
             <td>${l.address}</td>
             <td>${l.type.name}</td>
+            <td>${l.rules}</td>
             <td>
             <a href="<c:url value='/update?id=${l.id}'/>">Изменить инцидент</a>
             </td>
