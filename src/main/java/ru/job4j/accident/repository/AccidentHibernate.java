@@ -76,7 +76,6 @@ public class AccidentHibernate {
             Transaction t = session.beginTransaction();
             session.saveOrUpdate(accident);
             t.commit();
-            session.getTransaction().rollback();
         }
         return accident;
     }
