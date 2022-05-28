@@ -19,13 +19,11 @@ public class Accident {
     @OneToOne
     private AccidentType type;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany
     private Set<Rule> rules;
-
 
     public Accident() {
     }
-
 
     public AccidentType getType() {
         return type;

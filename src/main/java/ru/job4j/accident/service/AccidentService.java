@@ -1,44 +1,73 @@
 package ru.job4j.accident.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
-import ru.job4j.accident.repository.AccidentHibernate;
+import ru.job4j.accident.repository.AccidentRepository;
+import ru.job4j.accident.repository.AccidentRepositoryRules;
+import ru.job4j.accident.repository.AccidentRepositoryTypes;
 
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class AccidentService {
 
-    private AccidentHibernate accidentHibernate;
+    private final AccidentRepository accidentRepository;
+    private final AccidentRepositoryRules accidentRepositoryRules;
+    private final AccidentRepositoryTypes accidentRepositoryTypes;
+    private final HashMap<Integer, AccidentType> types;
+    private final HashMap<Integer, Rule> rules;
 
-    public AccidentService(AccidentHibernate accidentMem) {
-        this.accidentHibernate = accidentMem;
+    public AccidentService(AccidentRepository accidentRepository,
+                           AccidentRepositoryRules accidentRepositoryRules,
+                           AccidentRepositoryTypes accidentRepositoryTypes) {
+        this.accidentRepository = accidentRepository;
+        this.accidentRepositoryRules = accidentRepositoryRules;
+        this.accidentRepositoryTypes = accidentRepositoryTypes;
+        types = getTypes();
+        rules = getRules();
     }
 
+
     public void of(Accident accident, String[] ids) {
-        accidentHibernate.save(accident, ids);
+        Set<Rule> set = new HashSet<>();
+        Arrays.stream(ids).forEach(
+                a -> set.add(rules.get(Integer.parseInt(a)))
+        );
+        accident.setRules(set);
+        accidentRepository.save(accident);
     }
 
     public List<Accident> getAccidentList() {
-        var s = accidentHibernate.getAll();
-        return new ArrayList<>(s);
+        List<Accident> res = new ArrayList<>(accidentRepository.getList());
+        return new ArrayList<>(res);
     }
 
-    public HashMap<Integer, AccidentType> getTypes() {
-        return accidentHibernate.getTypes();
-    }
-
-    public Accident findById(int id) {
-        return accidentHibernate.findById(id);
+    public HashMap<Integer, AccidentType> types() {
+        return new HashMap<>(types);
     }
 
     public HashMap<Integer, Rule> rules() {
-        return accidentHibernate.getRules();
+        return new HashMap<>(rules);
+    }
+
+
+    private HashMap<Integer, AccidentType> getTypes() {
+        HashMap<Integer, AccidentType> types = new HashMap<>();
+        accidentRepositoryTypes.findAll().forEach(a -> types.put(a.getId(), a));
+        return new HashMap<>(types);
+    }
+
+    public Accident findById(int id) {
+        return accidentRepository.getById(id);
+    }
+
+    private HashMap<Integer, Rule> getRules() {
+        HashMap<Integer, Rule> rules = new HashMap<>();
+        accidentRepositoryRules.findAll().forEach(a -> rules.put(a.getId(), a));
+        return new HashMap<>(rules);
     }
 
 }
