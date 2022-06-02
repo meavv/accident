@@ -3,6 +3,9 @@
 <html>
 <head>
     <a href="<c:url value='/create'/>">Добавить инцидент</a>
+    <div>
+        Login as : ${user.username}
+    </div>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
