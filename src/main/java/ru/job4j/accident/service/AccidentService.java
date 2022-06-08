@@ -30,7 +30,6 @@ public class AccidentService {
         rules = getRules();
     }
 
-
     public void of(Accident accident, String[] ids) {
         Set<Rule> set = new HashSet<>();
         Arrays.stream(ids).forEach(
