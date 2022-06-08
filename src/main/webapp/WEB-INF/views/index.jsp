@@ -6,6 +6,7 @@
     <div>
         Login as : ${user.username}
     </div>
+    <a href="<c:url value='/logout'/>">Выход</a>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
